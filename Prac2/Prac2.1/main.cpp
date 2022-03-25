@@ -27,7 +27,7 @@ int main(void)
 	//				cl_uint *num_platforms)
   	
     	//------------------------------------------------------------------------
-    
+  cl_int clGetPlatformIDs(cl_uint num_entries, cl_platform_id *platforms, cl_uint *num_platforms);
 	cl_uint platformCount; //keeps track of the number of platforms you have installed on your device
 	cl_platform_id *platforms;
 	// get platform count
@@ -40,7 +40,7 @@ int main(void)
 	//TODO code 1: select the platform you wish to use
 	//Select the platform you would like to use in this program (change index to do this). If you would like to see all available platforms run platform.cpp.
 	
-	
+	cl_platform_id platform = platforms[0];
 	//Outputs the information of the chosen platform
 	char* Info = (char*)malloc(0x1000*sizeof(char));
 	clGetPlatformInfo(platform, CL_PLATFORM_NAME      , 0x1000, Info, 0);
@@ -63,12 +63,16 @@ int main(void)
 	
 	cl_device_id device; //this is your deviceID
 	cl_int err;
-	
+	cl_int clGetDeviceIDs(cl_platform_id platform,
+	cl_device_type device_type,
+	cl_uint num_entries,
+	cl_device_id *devices,
+	cl_uint *num_devices);
 	/* Access a device */
 	//The if statement checks to see if the chosen platform uses a GPU, if not it setups the device using the CPU
 	//TODO code 2: select your device
 	
-
+	err = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 1, &device, NULL);
 	//------------------------------------------------------------------------
 	
 	//***Step 3*** creates a context that allows devices to send and receive kernels and transfer data
@@ -78,7 +82,16 @@ int main(void)
 	//				void *pfn_notify(const char *errinfo, const void *private_info, size_t cb, void *user_data),
 	//				void *user_data,cl_int *errcode_ret)
 	//TODO code 3: create the context
+	cl_context clCreateContext(cl_context_properties *properties,
+		cl_uint num_devices,
+		const cl_device_id *devices,
+		void *pfn_notify(const char *errinfo,
+			const void *private_info, size_t cb,
+			void *user_data),
+		void *user_data,cl_int *errcode_ret);
 
+	cl_context context;
+	context = clCreateContext(NULL, 1, &device, NULL, NULL, NULL);
 	//------------------------------------------------------------------------
 
 	//***Step 4*** get details about the kernel.cl file in order to create it (read the kernel.cl file and place it in a buffer)
