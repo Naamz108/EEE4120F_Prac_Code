@@ -140,9 +140,15 @@ int main(void)
 	//		const char* options,
 	//		void (CL_CALLBACK* pfn_notify)(cl_program program, void* user_data),
 	//		void* user_data);
-	
+	cl_int clBuildProgram(
+		cl_program program,
+		cl_uint num_devices,
+		const cl_device_id* device_list,
+		const char* options,
+		void (CL_CALLBACK* pfn_notify)(cl_program program, void* user_data),
+		void* user_data);
 	//TODO code 6: compile the source code obtained in step 5
-	
+	cl_int err3= clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
 	printf("program ID = %i\n", err3);
 	
 	//------------------------------------------------------------------------
@@ -152,8 +158,8 @@ int main(void)
 	//			const char* kernel_name,
 	//			cl_int* errcode_ret);
 	//TODO code 7: create the kernel
-	
-
+	cl_kernel clCreateKernel(cl_program program, const char* kernel_name, cl_int* errcode_ret);
+	cl_kernel kernel = clCreateKernel(program, "HelloWorld", &err);
 	//------------------------------------------------------------------------
 	
 	//***Step 8*** create command queue to the target device. This is the queue that the kernels get dispatched too, to get the the desired device.
