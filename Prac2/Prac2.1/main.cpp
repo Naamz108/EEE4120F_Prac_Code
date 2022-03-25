@@ -175,7 +175,9 @@ int main(void)
 
 	//***Step 9*** create data buffers for memory management between the host and the target device
 	//TODO code 9.1: set the number of work items, size of the work items and determine the number of work groups
-	
+	size_t global_size = 16; //total number of work items
+	size_t local_size = 4; //Size of each work group
+	cl_int num_groups = global_size/local_size; //number of work groups needed
 	int argument1 = 10; //argument 1 that has to be sent to the target device
 	int argument2 = 20; //argument 2 that has to be sent to the target device
 	int output[global_size]; //output array
@@ -205,12 +207,27 @@ int main(void)
 	//				size_t arg_size, 
 	//				const void *arg_value)
 	//TODO code 10: create the arguments for the kernel
-	
+	cl_int clSetKernelArg (cl_kernel kernel,
+		cl_uint arg_index,
+		size_t arg_size,
+		const void *arg_value);
+
+	clSetKernelArg(kernel, 0, sizeof(cl_mem), &argument1_buffer);
+	clSetKernelArg(kernel, 1, sizeof(cl_mem), &argument2_buffer);
+	clSetKernelArg(kernel, 2, sizeof(cl_mem), &output_buffer);
 
 	//------------------------------------------------------------------------
 
 	//***Step 11*** enqueue kernel, deploys the kernels and determines the number of work-items that should be generated to execute the kernel (global_size) and the number of work-items in each work-group (local_size).
-	
+	cl_int clEnqueueNDRangeKernel (cl_command_queue command_queue,
+		cl_kernel kernel,
+		cl_uint work_dim,
+		const size_t *global_work_offset,
+		const size_t *global_work_size,
+		const size_t *local_work_size,
+		cl_uint num_events_in_wait_list,
+		const cl_event *event_wait_list,
+		cl_event *event);
 	// cl_int clEnqueueNDRangeKernel (cl_command_queue command_queue, 
 	//					cl_kernel kernel, 
 	//					cl_uint work_dim, 
@@ -221,7 +238,7 @@ int main(void)
 	//					const cl_event *event_wait_list, 
 	//					cl_event *event)
 	//TODO code 11: deploy kernel and set work groups
-         	 	
+  cl_int err4 = clEnqueueNDRangeKernel(queue, kernel, 1, NULL,&global_size, &local_size, 0, NULL, NULL);
 	printf("\nKernel check: %i \n",err4);
 
 	//------------------------------------------------------------------------
