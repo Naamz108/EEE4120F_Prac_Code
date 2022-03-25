@@ -98,7 +98,7 @@ int main(void)
 	//read file in	
 	FILE *program_handle;
 	//TODO code 4: select the directory of the file that contains the kernel
-	
+	program_handle = fopen("OpenCL/Kernel.cl", "r");
 
 	//get program size
 	size_t program_size;//, log_size;
@@ -123,7 +123,13 @@ int main(void)
 	//						cl_int *errcode_ret)	
 	
 	//TODO code 5: create the .cl program from the source code 
+	cl_program clCreateProgramWithSource(cl_context context,
+		cl_uint count,
+		const char **strings,
+		const size_t *lengths,
+		cl_int *errcode_ret);
 	
+	cl_program program = clCreateProgramWithSource(context, 1, (const char**)&program_buffer, &program_size, NULL);
 
 	//------------------------------------------------------------------------
 
