@@ -169,8 +169,8 @@ int main(void)
 	//						cl_int *errcode_ret)
 	
 	//TODO code 8: create the queue
-	
-
+	cl_command_queue clCreateCommandQueueWithProperties(cl_context context, cl_device_id device, const cl_queue_properties* properties, cl_int* errcode_ret);
+	cl_command_queue queue = clCreateCommandQueueWithProperties(context, device,0, NULL);
 	//------------------------------------------------------------------------
 
 	//***Step 9*** create data buffers for memory management between the host and the target device
@@ -187,8 +187,10 @@ int main(void)
 	//			size_t size,
 	//			void* host_ptr,
 	//			cl_int* errcode_ret);
-	
+	cl_mem clCreateBuffer(cl_context context,cl_mem_flags flags,size_t size,void* host_ptr,cl_int* errcode_ret);
 	//TODO code 9.2: Create the buffer for argument 1
+
+	argument1_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), &argument1, &err);
 	
 	argument2_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), &argument2, &err);
 	
