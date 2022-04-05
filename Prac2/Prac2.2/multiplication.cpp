@@ -217,26 +217,28 @@ int main(void)
 	size_t local_size = Size; //Size of each work group
 	cl_int num_groups = global_size/local_size; //number of work groups needed
 	
-	int* matrixA = new int[global_size];
-	int* matrixB = new int[global_size];
+	int* matrixA = new int[local_size];
+	int* matrixB = new int[local_size];
 
 	createKnownSquareMatrix(Size,matrixA, displayMatrices); //argument 1 that has to be sent to the target device
-	cout<<"Number of elements in matrix 1: "<<global_size<<"\n";
-	cout<<"Dimensions of matrix 1: "<<Size<<"x"<<Size<<"\n";
+	cout<<"Number of elements in matrix 1: "<<local_size<<"\n";
+	cout<<"Dimensions of matrix 1: "<<local_size<<"x"<<local_size<<"\n";
 	cout<<"Matrix 1 pointer: "<<matrixA<<"\n";
 
 	createKnownSquareMatrix(Size,matrixB, displayMatrices); //argument 2 that has to be sent to the target device
-	cout<<"Number of elements in matrix 2: "<<global_size<<"\n";
-	cout<<"Dimensions of matrix 2: "<<Size<<"x"<<Size<<"\n";
+	cout<<"Number of elements in matrix 2: "<<local_size<<"\n";
+	cout<<"Dimensions of matrix 2: "<<local_size<<"x"<<local_size<<"\n";
 	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
 	
 	int* output = new int[global_size];
+	printf('decalre output arr');
 	for(int i = 0; i < Size; i++){
 			for(int j = 0; j < Size; j++)
 			{
 				output[i*Size+j] = 0;
 			}
 		}
+	printf('fill output array');
 	
 	//Buffer (memory block) that both the host and target device can access 
 	//cl_mem clCreateBuffer(cl_context context,
