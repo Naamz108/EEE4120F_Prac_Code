@@ -10,14 +10,18 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 
 	int temp = 0;
 
+	int index = workItemNum % size;
+
 	for(int k = 0; k < size; k++)
 	{
-		temp += matrixA[k]*matrixA[k*size];
+		temp += matrixA[k]*matrixA[k*size + index];
 	}
 	
 	printf("output: %d \n",temp);
 
 	output[workItemNum] = temp;
+	
+	barrier(CLK_LOCAL_MEM_FENCE);
 }
 
 
