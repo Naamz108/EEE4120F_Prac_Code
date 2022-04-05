@@ -14,6 +14,8 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	{
 		temp += matrixA[k + workItemNum]*matrixA[k*size + workItemNum];
 	}
+	
+	printf("output: %d \n",temp);
 
 	output[workItemNum] = temp;
 }
