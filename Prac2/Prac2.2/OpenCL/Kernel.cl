@@ -4,7 +4,7 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	//TODO: program your kernel here
 	int workItemNum = get_global_id(0);
 	int size = *Size;
-	printf("kernal working");
+	printf("kernal working, work item num: %d \n",workItemNum);
 	printf("",size);
 	printf("",matrixA);
 
@@ -14,7 +14,7 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	{
 		temp += matrixA[k]*matrixA[k*size];
 	}
-	printf("",workItemNum);
+
 	output[workItemNum] = temp;
 }
 
