@@ -57,12 +57,13 @@ void createRandomSquareMatrix(int Size, int* squareMatrix, bool displayMatrices)
 
 
 int main(void){
-
-
+	int Size = 3;
+	
+	cout<<"Enter the size of the matrix";    
+	cin>>Size;   
 
 	//New code for prac 2.2
 	bool displayMatrices = true;
-	int Size = 3;
 	int countA = Size*Size;
 	int matrixA[countA];
 	createKnownSquareMatrix(Size,matrixA, displayMatrices);
