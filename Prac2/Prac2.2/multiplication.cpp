@@ -64,24 +64,6 @@ int main(void)
 
 
 	//New code for prac 2.2
-	bool displayMatrices = true;
-	int Size = 3;
-	int countA = Size*Size;
-	int matrixA[countA];
-	createKnownSquareMatrix(Size,matrixA,displayMatrices);
-	cout<<"Number of elements in matrix 1: "<<countA<<"\n";
-	cout<<"Dimensions of matrix 1: "<<Size<<"x"<<Size<<"\n";
-	cout<<"Matrix 1 pointer: "<<matrixA<<"\n";
-
-	
-	
-	int countB = Size*Size;
-	int matrixB[countB];
-	createKnownSquareMatrix(Size, matrixB,displayMatrices);
-	cout<<"Number of elements in matrix 2: "<<countB<<"\n";
-	cout<<"Dimensions of matrix 2: "<<Size<<"x"<<Size<<"\n";
-	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
-
 	
 	/* OpenCL structures you need to program*/
 	//cl_device_id device; step 1 and 2 
@@ -102,7 +84,8 @@ int main(void)
 	//				cl_uint *num_platforms)
   	
     	//------------------------------------------------------------------------
-    
+  cl_mem matrixA_buffer, matrixB_buffer, Size_buffer, output_buffer; 
+
 	cl_uint platformCount; //keeps track of the number of platforms you have installed on your device
 	cl_platform_id *platforms;
 	// get platform count
@@ -229,12 +212,6 @@ int main(void)
 	//already got matrixA and matrixB
 	//TODO: initialize the output array
 	int Size = 1000;
-	
-	//cout<<"Enter the size of the matrix";    
-	//cin>>Size; 
-	
-
-
 	bool displayMatrices = true;
   size_t global_size = Size*Size; //total number of work items
 	size_t local_size = Size; //Size of each work group
