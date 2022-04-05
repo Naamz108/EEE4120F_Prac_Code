@@ -246,10 +246,11 @@ int main(void)
 	//			cl_int* errcode_ret);
 	
 	//TODO: create matrixA_buffer, matrixB_buffer and output_buffer, with clCreateBuffer()
+
+	Size_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), &Size, &err);
+	output_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, global_size*sizeof(int), output, &err);
 	matrixA_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, global_size*sizeof(int), matrixA, &err);
 	matrixB_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, global_size*sizeof(int), matrixB, &err);
-	Size_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), &Size, &err);
-	output_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, global_size*sizeof(int), &output, &err);
 	//------------------------------------------------------------------------
 	//***Step 10*** create the arguments for the kernel (link these to the buffers set above, using the pointers for the respective buffers)
 	// cl_int clSetKernelArg (cl_kernel kernel, 
