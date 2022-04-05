@@ -57,8 +57,9 @@ void createRandomSquareMatrix(int Size, int* squareMatrix, bool displayMatrices)
 
 
 int main(void){
-	int Size = 1000;
-	
+	int Size = 5;
+	cout<<"Enter square matrix column/row size: \n";
+	cin>>Size;
 	clock_t startRuntime = clock();
 	//New code for prac 2.2
 	bool displayMatrices = true;
