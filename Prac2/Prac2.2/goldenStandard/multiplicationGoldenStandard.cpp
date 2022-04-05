@@ -59,7 +59,7 @@ void createRandomSquareMatrix(int Size, int* squareMatrix, bool displayMatrices)
 int main(void){
 	int Size = 1000;
 	
-	clock_t start = clock();
+	clock_t startRuntime = clock();
 	//New code for prac 2.2
 	bool displayMatrices = true;
 	int countA = Size*Size;
@@ -83,7 +83,8 @@ int main(void){
 	int* output = new int[countA];
 
 	//TODO: code your golden standard matrix multiplication here
-		
+	clock_t startCalcTime = clock();
+
 		for(int i = 0; i < Size; i++){
 				for(int j = 0; j < Size; j++)
 				{
@@ -109,8 +110,8 @@ int main(void){
 	}
 	
 	clock_t endPrint = clock();
-	printf ("Calc Time: %0.8f sec \n",((float) endCalc - start)/CLOCKS_PER_SEC);
-	printf ("Run Time: %0.8f sec \n",((float) endPrint - start)/CLOCKS_PER_SEC);
+	printf ("Calc Time: %0.8f sec \n",((float) endCalc - startCalcTime)/CLOCKS_PER_SEC);
+	printf ("Run Time: %0.8f sec \n",((float) endPrint - startRuntime)/CLOCKS_PER_SEC);
 	delete[] matrixA;
 	delete[] matrixB;
 	delete[] output;
