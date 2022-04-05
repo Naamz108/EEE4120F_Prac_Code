@@ -6,7 +6,7 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	int size = *Size;
 	printf("kernal working, work item num: %d \n",workItemNum);
 	printf("Size parsed: %d \n",size);
-	printf("matrixA parsed %d \n",matrixA);
+	printf("matrixA parsed %d \n",matrixA[workItemNum]);
 
 	int temp = 0;
 
