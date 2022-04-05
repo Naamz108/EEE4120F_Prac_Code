@@ -2,20 +2,20 @@
 __kernel void matrixMultiplication(__global int* Size,__global int* output,__global int* matrixA,__global int* matrixB){
 	
 	//TODO: program your kernel here
+	int workItemNum = get_global_id(0);
 	int size = *Size;
 	printf("kernal working");
 	printf("",size);
 	printf("",matrixA);
-	// for(int i = 0; i < size; i++){
-	// 			for(int j = 0; j < size; j++)
-	// 			{
-	// 				for(int k = 0; k < size; k++)
-	// 				{
-	// 					output[i*size+j] += matrixA[k]*matrixA[k*size + j];
-	// 				}
-	// 			}
-	// 	}
+
+	int temp = 0;
+
+	for(int k = 0; k < size; k++)
+	{
+		temp += matrixA[k]*matrixA[k*size];
+	}
 	
+	output[workItemNum] = temp;
 }
 
 
