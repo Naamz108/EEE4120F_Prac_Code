@@ -3,17 +3,18 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	
 	//TODO: program your kernel here
 	int size = *Size;
-	
-	for(int i = 0; i < size; i++){
-				for(int j = 0; j < size; j++)
-				{
-					output[i*size+j] = 0;
-					for(int k = 0; k < size; k++)
-					{
-						output[i*size+j] += matrixA[k]*matrixA[k*size + j];
-					}
-				}
-		}
+	printf("kernal working");
+	printf("",size);
+	printf("",matrixA);
+	// for(int i = 0; i < size; i++){
+	// 			for(int j = 0; j < size; j++)
+	// 			{
+	// 				for(int k = 0; k < size; k++)
+	// 				{
+	// 					output[i*size+j] += matrixA[k]*matrixA[k*size + j];
+	// 				}
+	// 			}
+	// 	}
 	
 }
 
