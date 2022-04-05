@@ -3,6 +3,10 @@
 
 #include<stdio.h>
 #include<iostream>
+#include<fstream>
+#include<string>
+#include<cmath>
+#include <tuple>
 
 using namespace std;
 
