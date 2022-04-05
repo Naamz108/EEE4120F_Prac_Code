@@ -248,14 +248,14 @@ int main(void)
 	//TODO: create matrixA_buffer, matrixB_buffer and output_buffer, with clCreateBuffer()
 
 	matrixA_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, local_size*sizeof(int), matrixA, &err);
-	
+	printf('matrixA buffer error');
 	matrixB_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, local_size*sizeof(int), matrixB, &err);
-	
+	printf('matrixB buffer error');
 	Size_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), &Size, &err);
-
+	printf('Size buffer error');
 	output_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, global_size*sizeof(int), output, &err);
 	//------------------------------------------------------------------------
-
+	printf('output buffer error');
 	//***Step 10*** create the arguments for the kernel (link these to the buffers set above, using the pointers for the respective buffers)
 	// cl_int clSetKernelArg (cl_kernel kernel, 
 	//				cl_uint arg_index, 
