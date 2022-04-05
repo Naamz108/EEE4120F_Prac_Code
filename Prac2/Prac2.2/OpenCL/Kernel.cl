@@ -4,9 +4,9 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	//TODO: program your kernel here
 	int workItemNum = get_global_id(0);
 	int size = *Size;
-	printf("kernal working, work item num: %d \n",workItemNum);
-	printf("Size parsed: %d \n",size);
-	printf("matrixA parsed %d \n",matrixA[workItemNum]);
+	//printf("kernal working, work item num: %d \n",workItemNum);
+	//printf("Size parsed: %d \n",size);
+	//printf("matrixA parsed %d \n",matrixA[workItemNum]);
 
 	int temp = 0;
 
@@ -17,11 +17,11 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 		temp += matrixA[k]*matrixA[k*size + index];
 	}
 	
-	printf("temp: %d \n",temp);
+	//printf("temp: %d \n",temp);
 
 	output[workItemNum] = temp;
 
-	printf("output: %d \n",output[workItemNum]);
+	//printf("output: %d \n",output[workItemNum]);
 	
 	//barrier(CLK_LOCAL_MEM_FENCE);
 }
