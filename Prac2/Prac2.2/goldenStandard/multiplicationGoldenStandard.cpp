@@ -65,7 +65,7 @@ int main(void){
 	//New code for prac 2.2
 	bool displayMatrices = true;
 	int countA = Size*Size;
-	int matrixA[countA];
+	int* matrixA = new int[countA];
 	createKnownSquareMatrix(Size,matrixA, displayMatrices);
 	cout<<"Number of elements in matrix 1: "<<countA<<"\n";
 	cout<<"Dimensions of matrix 1: "<<Size<<"x"<<Size<<"\n";
@@ -75,16 +75,15 @@ int main(void){
 	
 	
 	int countB = Size*Size;
-	int matrixB[countB];
+	int* matrixB = new int[countB];
 	createKnownSquareMatrix(Size, matrixB, displayMatrices);
 	cout<<"Number of elements in matrix 2: "<<countB<<"\n";
 	cout<<"Dimensions of matrix 2: "<<Size<<"x"<<Size<<"\n";
 	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
 	
 	
-	
-	int output[countA];
-	
+	int* output = new int[countA];
+
 	//TODO: code your golden standard matrix multiplication here
 		
 		for(int i = 0; i < Size; i++){
