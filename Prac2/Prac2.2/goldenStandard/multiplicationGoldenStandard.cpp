@@ -89,6 +89,7 @@ int main(void){
 		for(int i = 0; i < Size; i++){
 				for(int j = 0; j < Size; j++)
 				{
+					output[i*Size+j] = 0;
 					for(int k = 0; k < Size; k++)
 					{
 						output[i*Size+j] += matrixA[k]*matrixA[k*Size + j];
