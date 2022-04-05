@@ -211,7 +211,7 @@ int main(void)
 	
 	//already got matrixA and matrixB
 	//TODO: initialize the output array
-	int Size = 5;
+	int Size = 1000;
 	bool displayMatrices = true;
   size_t global_size = Size*Size; //total number of work items
 	size_t local_size = Size; //Size of each work group
