@@ -230,8 +230,8 @@ int main(void)
 	cout<<"Dimensions of matrix 2: "<<local_size<<"x"<<local_size<<"\n";
 	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
 	
-	int* output = new int[global_size];
-	//int output[global_size];
+	//int* output = new int[global_size];
+	int output[global_size];
 	// for(int i = 0; i < global_size; i++){
 	// 	output[i] = 0;
 	// }
@@ -326,8 +326,8 @@ int main(void)
 	clReleaseCommandQueue(queue);
 	clReleaseProgram(program);
 	clReleaseContext(context);
-	// delete[] matrixA;
-	// delete[] matrixB;
+	delete[] matrixA;
+	delete[] matrixB;
 	// delete[] output;
 
 	return 0;
