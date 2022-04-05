@@ -231,12 +231,12 @@ int main(void)
 	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
 	
 	int* output = new int[global_size];
-	for(int i = 0; i < Size; i++){
-			for(int j = 0; j < Size; j++)
-			{
-				output[i*Size+j] = 0;
-			}
-		}
+	// for(int i = 0; i < Size; i++){
+	// 		for(int j = 0; j < Size; j++)
+	// 		{
+	// 			output[i*Size+j] = 0;
+	// 		}
+	// 	}
 	
 	//Buffer (memory block) that both the host and target device can access 
 	//cl_mem clCreateBuffer(cl_context context,
