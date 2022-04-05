@@ -296,7 +296,7 @@ int main(void)
 	
 	
 	//This command stops the program here until everything in the queue has been run
-	clFinish(queue);
+	
 	
 	
 	//***Step 13*** Check that the host was able to retrieve the output data from the output buffer
@@ -321,6 +321,7 @@ int main(void)
 	delete[] matrixB;
 	delete[] output;
 	//***Step 14*** Deallocate resources	
+	clFinish(queue);
 	clReleaseKernel(kernel);
 	clReleaseMemObject(output_buffer);
 	clReleaseMemObject(matrixA_buffer);
