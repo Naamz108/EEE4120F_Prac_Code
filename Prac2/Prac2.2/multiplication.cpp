@@ -232,9 +232,9 @@ int main(void)
 	
 	int* output = new int[global_size];
 	//int output[global_size];
-	for(int i = 0; i < global_size; i++){
-		output[i] = 0;
-	}
+	// for(int i = 0; i < global_size; i++){
+	// 	output[i] = 0;
+	// }
 	
 	//Buffer (memory block) that both the host and target device can access 
 	//cl_mem clCreateBuffer(cl_context context,
