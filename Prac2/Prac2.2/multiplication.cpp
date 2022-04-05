@@ -326,9 +326,9 @@ int main(void)
 	clReleaseCommandQueue(queue);
 	clReleaseProgram(program);
 	clReleaseContext(context);
-	delete[] matrixA;
-	delete[] matrixB;
-	delete[] output;
+	// delete[] matrixA;
+	// delete[] matrixB;
+	// delete[] output;
 
 	return 0;
 }
