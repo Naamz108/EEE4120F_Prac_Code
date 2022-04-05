@@ -7,7 +7,7 @@
 #include<string>
 #include<cmath>
 #include <tuple>
-
+#include <ctime>
 using namespace std;
 
 
@@ -61,7 +61,7 @@ int main(void){
 	
 	cout<<"Enter the size of the matrix";    
 	cin>>Size;   
-
+	clock_t start = clock();
 	//New code for prac 2.2
 	bool displayMatrices = true;
 	int countA = Size*Size;
@@ -98,7 +98,7 @@ int main(void){
 				}
 		}
 
-					
+		clock_t endCalc = clock();			
 	
 	//This if statement will display the matrix in output	
 	if(displayMatrices){
@@ -111,5 +111,9 @@ int main(void){
 		}
 	}
 	
+	clock_t endPrint = clock();
+	printf ("Calc Time: %0.8f sec \n",((float) endCalc - start)/CLOCKS_PER_SEC);
+	printf ("Run Time: %0.8f sec \n",((float) endPrint - start)/CLOCKS_PER_SEC);
+
 	return 0;
 }
