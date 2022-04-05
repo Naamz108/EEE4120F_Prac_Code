@@ -246,7 +246,7 @@ int main(void)
 	//			cl_int* errcode_ret);
 	
 	//TODO: create matrixA_buffer, matrixB_buffer and output_buffer, with clCreateBuffer()
-
+	printf('start buffers');
 	matrixA_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, local_size*sizeof(int), matrixA, &err);
 	printf('matrixA buffer error');
 	matrixB_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, local_size*sizeof(int), matrixB, &err);
