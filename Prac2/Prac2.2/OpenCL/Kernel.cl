@@ -21,7 +21,7 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 
 	output[workItemNum] = temp;
 	
-	barrier(CLK_LOCAL_MEM_FENCE);
+	//barrier(CLK_LOCAL_MEM_FENCE);
 }
 
 
