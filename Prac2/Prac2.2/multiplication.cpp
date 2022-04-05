@@ -1,14 +1,14 @@
 
 //Author: Christopher Hill For the EEE4120F course at UCT
 
-#include<stdio.h>
 #include<CL/cl.h>
+#include<stdio.h>
 #include<iostream>
 #include<fstream>
 #include<string>
 #include<cmath>
 #include <tuple>
-
+#include <ctime>
 using namespace std;
 
 
@@ -60,7 +60,7 @@ void createRandomSquareMatrix(int Size, int* squareMatrix, bool displayMatrices)
 int main(void)
 {
 
-	clock_t start, end;  //Timers
+	clock_t startRuntime = clock(); 
 
 
 	//New code for prac 2.2
@@ -210,7 +210,7 @@ int main(void)
 	//			cl_int* errcode_ret);
 
 	//TODO: select the kernel you are running
-
+	cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", &err);
 	//------------------------------------------------------------------------
 	
 	//***Step 8*** create command queue to the target device. This is the queue that the kernels get dispatched too, to get the the desired device.
@@ -228,9 +228,32 @@ int main(void)
 	
 	//already got matrixA and matrixB
 	//TODO: initialize the output array
+	int Size = 1000;
+	
+	//cout<<"Enter the size of the matrix";    
+	//cin>>Size; 
+	
 
-   
 
+	bool displayMatrices = true;
+  size_t global_size = Size*Size; //total number of work items
+	size_t local_size = Size; //Size of each work group
+	cl_int num_groups = global_size/local_size; //number of work groups needed
+	
+	int* matrixA = new int[global_size];
+	int* matrixB = new int[global_size];
+
+	createKnownSquareMatrix(Size,matrixA, displayMatrices); //argument 1 that has to be sent to the target device
+	cout<<"Number of elements in matrix 1: "<<countA<<"\n";
+	cout<<"Dimensions of matrix 1: "<<Size<<"x"<<Size<<"\n";
+	cout<<"Matrix 1 pointer: "<<matrixA<<"\n";
+
+	createKnownSquareMatrix(Size,matrixB, displayMatrices); //argument 2 that has to be sent to the target device
+	cout<<"Number of elements in matrix 2: "<<countB<<"\n";
+	cout<<"Dimensions of matrix 2: "<<Size<<"x"<<Size<<"\n";
+	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
+	
+	int* output = new int[global_size];
 	
 	//Buffer (memory block) that both the host and target device can access 
 	//cl_mem clCreateBuffer(cl_context context,
@@ -241,7 +264,13 @@ int main(void)
 	
 	//TODO: create matrixA_buffer, matrixB_buffer and output_buffer, with clCreateBuffer()
 
+	matrixA_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, local_size*sizeof(int), &matrixA, &err);
+	
+	matrixB_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, local_size*sizeof(int), &matrixB, &err);
+	
+	Size_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, sizeof(int), &Size, &err);
 
+	output_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, global_size*sizeof(int), &output, &err);
 	//------------------------------------------------------------------------
 
 	//***Step 10*** create the arguments for the kernel (link these to the buffers set above, using the pointers for the respective buffers)
@@ -254,8 +283,11 @@ int main(void)
 
 	//------------------------------------------------------------------------
 
-	
-	
+	clSetKernelArg(kernel, 0, sizeof(cl_mem), &Size_buffer);
+	clSetKernelArg(kernel, 1, sizeof(cl_mem), &output_buffer);
+	clSetKernelArg(kernel, 2, sizeof(cl_mem), &matrixA_buffer);
+	clSetKernelArg(kernel, 3, sizeof(cl_mem), &matrixB_buffer);
+
 
 	//***Step 11*** enqueue kernel, deploys the kernels and determines the number of work-items that should be generated to execute the kernel (global_size) and the number of work-items in each work-group (local_size).
 	
@@ -270,7 +302,8 @@ int main(void)
 	//					cl_event *event)
 	
 	
-	
+	clock_t startKernal = clock(); 
+
 	cl_int err4 = clEnqueueNDRangeKernel(queue, kernel, 1, NULL, &global_size, &local_size, 0, NULL, NULL); 
 	
 	
@@ -288,6 +321,7 @@ int main(void)
 	
 	
 	//***Step 13*** Check that the host was able to retrieve the output data from the output buffer
+	clock_t endKernal = clock();
 	
 	if(displayMatrices){
 		printf("\nOutput in the output_buffer \n");
@@ -300,8 +334,13 @@ int main(void)
 	}
 	
 	
+	clock_t endRuntime = clock();
 	//------------------------------------------------------------------------
-
+	printf ("Kernal Time: %0.8f sec \n",((float) endKernal - startKernal)/CLOCKS_PER_SEC);
+	printf ("Run Time: %0.8f sec \n",((float) endRuntime - startRuntime)/CLOCKS_PER_SEC);
+	delete[] matrixA;
+	delete[] matrixB;
+	delete[] output;
 	//***Step 14*** Deallocate resources	
 	clReleaseKernel(kernel);
 	clReleaseMemObject(output_buffer);

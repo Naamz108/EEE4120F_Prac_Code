@@ -113,6 +113,9 @@ int main(void){
 	clock_t endPrint = clock();
 	printf ("Calc Time: %0.8f sec \n",((float) endCalc - start)/CLOCKS_PER_SEC);
 	printf ("Run Time: %0.8f sec \n",((float) endPrint - start)/CLOCKS_PER_SEC);
+	delete[] matrixA;
+	delete[] matrixB;
+	delete[] output;
 
 	return 0;
 }
