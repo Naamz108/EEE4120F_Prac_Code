@@ -230,7 +230,8 @@ int main(void)
 	cout<<"Dimensions of matrix 2: "<<local_size<<"x"<<local_size<<"\n";
 	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
 	
-	int* output = new int[global_size];
+	//int* output = new int[global_size];
+	int output[global_size];
 	for(int i = 0; i < global_size; i++){
 		output[i] = 0;
 	}
@@ -302,7 +303,7 @@ int main(void)
 	if(displayMatrices){
 		printf("\nOutput in the output_buffer \n");
 		for(int j=0; j<global_size; j++) {
-			printf("%i \t " ,output[j]);
+			printf("%d \t " ,output[j]);
 			if(j%Size == (Size-1)){
 				printf("\n");
 			}
