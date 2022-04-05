@@ -221,12 +221,12 @@ int main(void)
 	int* matrixB = new int[global_size];
 
 	createKnownSquareMatrix(Size,matrixA, displayMatrices); //argument 1 that has to be sent to the target device
-	cout<<"Number of elements in matrix 1: "<<countA<<"\n";
+	cout<<"Number of elements in matrix 1: "<<global_size<<"\n";
 	cout<<"Dimensions of matrix 1: "<<Size<<"x"<<Size<<"\n";
 	cout<<"Matrix 1 pointer: "<<matrixA<<"\n";
 
 	createKnownSquareMatrix(Size,matrixB, displayMatrices); //argument 2 that has to be sent to the target device
-	cout<<"Number of elements in matrix 2: "<<countB<<"\n";
+	cout<<"Number of elements in matrix 2: "<<global_size<<"\n";
 	cout<<"Dimensions of matrix 2: "<<Size<<"x"<<Size<<"\n";
 	cout<<"Matrix 2 pointer: "<<matrixB<<"\n";
 	
@@ -302,7 +302,7 @@ int main(void)
 	
 	if(displayMatrices){
 		printf("\nOutput in the output_buffer \n");
-		for(int j=0; j<countA; j++) {
+		for(int j=0; j<global_size; j++) {
 			printf("%i \t " ,output[j]);
 			if(j%Size == (Size-1)){
 				printf("\n");
