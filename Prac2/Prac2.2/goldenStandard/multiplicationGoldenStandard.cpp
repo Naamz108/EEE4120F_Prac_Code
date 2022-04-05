@@ -86,9 +86,16 @@ int main(void){
 	
 	//TODO: code your golden standard matrix multiplication here
 		
-		
-	
-	
+		for(int i = 0; i < Size; i++){
+        for(int j = 0; j < Size; j++){
+            for(int k = 0; k < Size; k++)
+            {
+                output[i][j] += matrixA[i][k] * matrixB[k][j];
+            }
+				}
+		}
+
+					
 	
 	//This if statement will display the matrix in output	
 	if(displayMatrices){
