@@ -301,7 +301,7 @@ int main(void)
 	
 	//***Step 13*** Check that the host was able to retrieve the output data from the output buffer
 	clock_t endKernal = clock();
-	
+	printf("output value 3 %d \n",output[2])
 	if(displayMatrices){
 		printf("\nOutput in the output_buffer \n");
 		for(int j=0; j<global_size; j++) {
