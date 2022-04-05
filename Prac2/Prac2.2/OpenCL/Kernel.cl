@@ -12,7 +12,7 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 
 	for(int k = 0; k < size; k++)
 	{
-		temp += matrixA[k + workItemNum]*matrixA[k*size + workItemNum];
+		temp += matrixA[k]*matrixA[k*size];
 	}
 	
 	printf("output: %d \n",temp);
