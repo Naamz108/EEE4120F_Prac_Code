@@ -87,11 +87,9 @@ int main(void){
 	//TODO: code your golden standard matrix multiplication here
 		
 		for(int i = 0; i < Size; i++){
-        for(int j = 0; j < Size; j++){
-            for(int k = 0; k < Size; k++)
-            {
-                output[i][j] += matrixA[i][k] * matrixB[k][j];
-            }
+				for(int j = 0; j < Size; j++)
+				{
+						output[i*Size+j] += matrixA[j] * matrixA[j*Size + i];
 				}
 		}
 
