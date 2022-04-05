@@ -5,8 +5,8 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 	int workItemNum = get_global_id(0);
 	int size = *Size;
 	printf("kernal working, work item num: %d \n",workItemNum);
-	printf("",size);
-	printf("",matrixA);
+	printf("Size parsed: %d \n",size);
+	printf("matrixA parsed %d \n",matrixA);
 
 	int temp = 0;
 
