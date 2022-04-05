@@ -17,9 +17,11 @@ __kernel void matrixMultiplication(__global int* Size,__global int* output,__glo
 		temp += matrixA[k]*matrixA[k*size + index];
 	}
 	
-	printf("output: %d \n",temp);
+	printf("temp: %d \n",temp);
 
 	output[workItemNum] = temp;
+
+	printf("output: %d \n",output[workItemNum]);
 	
 	//barrier(CLK_LOCAL_MEM_FENCE);
 }
